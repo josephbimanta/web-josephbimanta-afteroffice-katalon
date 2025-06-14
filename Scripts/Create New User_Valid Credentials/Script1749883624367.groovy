@@ -17,13 +17,25 @@ import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import org.openqa.selenium.Keys as Keys
 
-WebUI.openBrowser('https://demoqa.com/login')
+WebUI.verifyTextPresent('Register to Book Store', false)
 
-WebUI.maximizeWindow()
+WebUI.setText(findTestObject('New User_Field_First Name'), 'Joseph')
 
-WebUI.scrollToElement(findTestObject('Login_Button_New User'), 0)
+WebUI.setText(findTestObject('New User_Field_Last Name'), 'Bimanta')
 
-WebUI.click(findTestObject('Login_Button_New User'))
+WebUI.scrollToElement(findTestObject('New User_Field_User Name'), 0)
 
-WebUI.callTestCase(findTestCase('Create New User_Valid Credentials'), [:], FailureHandling.STOP_ON_FAILURE)
+WebUI.setText(findTestObject('New User_Field_User Name'), 'josephbimanta')
+
+WebUI.setText(findTestObject('New User_Field_Password'), 'Validcred1234@')
+
+WebUI.switchToFrame(findTestObject('New User_iframe_reCaptcha'), 10)
+
+WebUI.executeJavaScript("document.getElementById('recaptcha-anchor').style.display = 'none';", null)
+
+//WebUI.click(findTestObject('New User_Checkbox_Captcha'))
+
+WebUI.switchToDefaultContent()
+
+
 
